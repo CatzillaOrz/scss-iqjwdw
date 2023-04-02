@@ -2,5 +2,7 @@
   max-width: $grid-width;
   background-color: $color-gray-dark;
   margin: 0 auto;
-  margin-bottom: $gutter-herizontal;
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+  }
 }
