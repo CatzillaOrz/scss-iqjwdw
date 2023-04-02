@@ -54,7 +54,7 @@ export default {
 <style lang="scss">
 @import '../sass/main';
 .hello {
-  max-width: 14rem;
+  max-width: $grid-width;
 }
 h1 {
   font-size: 14px;
