@@ -1,15 +1,13 @@
 <template>
   <div id="app">
     <img v-if="img" :src="img" />
-    <p>Counter: {{ state.count }}</p>
-    <button @click="increment">increment</button>
-    <input v-model="countRef" @keyup.enter="setCount(countRef)" />
+
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
 <script lang="ts">
-import { useRxState, syncRef } from 'vuse-rx';
+import { useRxState, syncRef, refFrom } from 'vuse-rx';
 import { defineComponent, toRef } from 'vue';
 import { tap } from 'rxjs/operators';
 import HelloWorld from './components/HelloWorld.vue';
@@ -18,43 +16,8 @@ import { from, Observable, Subject, interval } from 'rxjs';
 import { repeat, map, share, exhaustMap, delay, tap } from 'rxjs/operators';
 import { takeUntil } from 'rxjs/operators';
 export const source$ = from(getCharacter(1)).pipe(share(), delay(3000));
-
+import { onMounted } from 'vue';
 export default defineComponent({
-  setup() {
-    const {
-      actions: { increment, setCount },
-      state,
-      state$, // state observable
-    } = useRxState({ count: 0 })(
-      {
-        // stateful reducer with mutation context
-        increment: () => (state, mutation) => ({
-          // automatic type inference for the state
-          count: state.count + 1,
-        }),
-
-        // stateless reducer
-        setCount: (count: string) => ({
-          // custom business logic
-          count: isNaN(Number(count)) ? 0 : Number(count),
-        }),
-      },
-      (state$) =>
-        state$.pipe(tap((state) => console.log('state is updated', state)))
-    );
-
-    // "Activating" the actions
-    state$.subscribe((state) => console.log('counter: ', state.count));
-
-    return {
-      increment,
-      setCount,
-      state,
-
-      // One-way data binding from reactive state (with type convertation)
-      countRef: syncRef(toRef(state, 'count'), { to: String }),
-    };
-  },
   name: 'App',
   components: {
     HelloWorld,
@@ -65,7 +28,7 @@ export default defineComponent({
     };
   },
   mounted() {
-    this.img = source$.pipe(
+    this.img = this.image$.pipe(
       map((res) => res.data.image),
       tap((e) => console.log(e))
     );
