@@ -13,9 +13,17 @@ import { tap } from 'rxjs/operators';
 import HelloWorld from './components/HelloWorld.vue';
 import { getCharacter } from 'rickmortyapi';
 import { from, Observable, Subject, interval } from 'rxjs';
-import { repeat, map, share, exhaustMap, delay, tap } from 'rxjs/operators';
+import {
+  repeat,
+  map,
+  share,
+  exhaustMap,
+  delay,
+  tap,
+  pipe,
+} from 'rxjs/operators';
 import { takeUntil } from 'rxjs/operators';
-export const source$ = from(getCharacter(1)).pipe(share(), delay(3000));
+// export const source$ = from(getCharacter(1)).pipe(share(), delay(3000));
 import { onMounted } from 'vue';
 export default defineComponent({
   name: 'App',
