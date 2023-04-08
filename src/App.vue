@@ -36,10 +36,10 @@ export default defineComponent({
     };
   },
   mounted() {
-    this.img = this.image$.pipe(
-      map((res) => res.data.image),
-      tap((e) => console.log(e))
-    );
+    // this.img = this.image$.pipe(
+    //   map((res) => res.data.image),
+    //   tap((e) => console.log(e))
+    // );
   },
   domStreams: ['plus$'],
   subscriptions: function () {
