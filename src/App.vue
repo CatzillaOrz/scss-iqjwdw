@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <img v-if="img" :src="img" />
+    
 
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
