@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <i class="icon-basic-world" style="color: black"></i>
     <section>
       <div class="grid-test">
         <div class="row">
@@ -38,6 +39,10 @@
         <div class="col-3-of-4">col 3 of 4</div>
       </div>
     </section>
+
+    <section class="section-features">
+      <i class="icon-basic-world"></i>
+    </section>
   </div>
 </template>
 
@@ -58,5 +63,10 @@ export default {
 }
 h1 {
   font-size: 14px;
+}
+.section-features {
+  i {
+    color: #000;
+  }
 }
 </style>
