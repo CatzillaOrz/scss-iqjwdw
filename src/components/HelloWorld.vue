@@ -57,6 +57,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+@import '../css/icon-font.css';
 @import '../sass/main';
 .hello {
   max-width: $grid-width;
